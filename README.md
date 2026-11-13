@@ -41,7 +41,6 @@ se esgota (derrota).
 |  `A`  | Move o robô para a **esquerda** |
 |  `S`  | Move o robô para **baixo**      |
 |  `D`  | Move o robô para a **direita**  |
-|  `H`  | Mostra a tela de **ajuda**      |
 |  `Q`  | **Encerra** a execução          |
 
 **Entradas inválidas:** teclas fora do conjunto acima são rejeitadas com mensagem de erro
