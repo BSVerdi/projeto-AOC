@@ -65,7 +65,7 @@ A execução encerra de forma clara via `Q`, vitória ou derrota.
 
 ### Configuração do MARS
 
-### Estrutura do repositório
+## Estrutura do repositório
 
 ```
 ├── README.md
@@ -73,9 +73,9 @@ A execução encerra de forma clara via `Q`, vitória ou derrota.
 │ ├── robo_aspirador.asm # arquivo principal
 │ └── mapa.asm # dados iniciais (matriz, bateria, posição)
 └── docs/
-├── ficha-tecnica.md
-├── testes.md
-└── uso-ia.md
+  ├── ficha-tecnica.md
+  ├── testes.md
+  └── uso-ia.md
 
 ```
 
@@ -87,7 +87,4 @@ Demonstração final do Robô Aspirador
 
 ## Integrantes
 
-|   Integrante   |
-| :------------: |
-|  Luiz Moloni   |
-| Breno Silveira |
+Luiz Moloni & Breno Silveira
