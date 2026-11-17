@@ -79,6 +79,8 @@ mostrar_mapa:
     la $t0, mapa
     lw $t1, mapa_linhas
     lw $t2, mapa_colunas
+    lw $t6, robo_linha
+    lw $t7, robo_coluna
     li $t3, 0                   # Linha atual, com indices a partir de zero.
 
 loop_linhas:
@@ -91,6 +93,11 @@ loop_colunas:
     addu $t5, $t5, $t4
     addu $t5, $t0, $t5          # Endereco da celula = base + deslocamento.
     lbu $a0, 0($t5)
+    bne $t3, $t6, imprimir_celula
+    bne $t4, $t7, imprimir_celula
+    li $a0, 'R'                 # Mostra o robo sem sobrescrever a celula na memoria.
+
+imprimir_celula:
     li $v0, 11                  # Syscall 11: imprimir um caractere.
     syscall
     addiu $t4, $t4, 1
