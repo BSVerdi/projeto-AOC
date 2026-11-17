@@ -20,6 +20,8 @@ main:
     la $a0, boas_vindas
     syscall
 
+    jal mostrar_mapa
+
 loop_menu: # Menu Interativo para o console do MARS.
     li $v0, 4
     la $a0, menu
@@ -69,6 +71,40 @@ sair:
     syscall
     li $v0, 10                  # Syscall 10: encerrar o programa.
     syscall
+
+# Exibe a matriz sem modificar suas celulas.
+# Nao recebe parametros nem retorna valores; usa apenas registradores temporarios.
+# Como nao chama outros procedimentos, nao precisa salvar $ra.
+mostrar_mapa:
+    la $t0, mapa
+    lw $t1, mapa_linhas
+    lw $t2, mapa_colunas
+    li $t3, 0                   # Linha atual, com indices a partir de zero.
+
+loop_linhas:
+    bge $t3, $t1, fim_mapa
+    li $t4, 0                   # Reinicia a coluna a cada linha.
+
+loop_colunas:
+    bge $t4, $t2, fim_linha
+    mul $t5, $t3, $t2           # Deslocamento = linha * colunas + coluna.
+    addu $t5, $t5, $t4
+    addu $t5, $t0, $t5          # Endereco da celula = base + deslocamento.
+    lbu $a0, 0($t5)
+    li $v0, 11                  # Syscall 11: imprimir um caractere.
+    syscall
+    addiu $t4, $t4, 1
+    j loop_colunas
+
+fim_linha:
+    li $a0, 10                  # Quebra de linha depois das seis colunas.
+    li $v0, 11
+    syscall
+    addiu $t3, $t3, 1
+    j loop_linhas
+
+fim_mapa:
+    jr $ra
 
 # Le uma linha como texto, evitando excecoes de conversao numerica.
 # Retorna em $v0 um unico caractere, ou -1 se o formato for invalido.
