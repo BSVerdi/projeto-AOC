@@ -6,6 +6,14 @@
 .data
 .globl mapa, mapa_linhas, mapa_colunas
 .globl robo_linha, robo_coluna
+.globl bateria, sujeirasRestantes, limpas
+
+# Recurso e estado da limpeza (usados por tentar_mover em robo.asm).
+# Bateria 30: o caminho minimo para limpar as 8 sujeiras e 23 movimentos,
+# entao 30 garante que a missao e possivel sem ser trivial.
+bateria:           .word 30
+sujeirasRestantes: .word 8
+limpas:            .word 0
 
 mapa_linhas:  .word 6
 mapa_colunas: .word 6
